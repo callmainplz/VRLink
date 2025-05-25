@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Link - Премиум поддержка Oculus Quest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #d1d1d1;
+            --bg-gradient: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            --card-gradient: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(26,26,26,0.85) 100%);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background-image: url('https://cdn.pixabay.com/photo/2020/04/25/16/04/virtual-reality-5091937_1280.jpg'), 
+                              radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.8) 70%);
+            background-blend-mode: overlay;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 15px rgba(255,255,255,0.5);
+        }
+        
+        .glow-text:hover {
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+        
+        .glow-card {
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+        
+        .glow-card:hover {
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(45deg, #ffffff, #d1d1d1);
+            color: #0a0a0a;
+            transition: all 0.4s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 25px rgba(255,255,255,0.4);
+        }
+        
+        .card-hover {
+            transition: all 0.4s ease;
+        }
+        
+        .card-hover:hover {
+            transform: scale(1.06);
+        }
+        
+        .animate-slideUp {
+            animation: slideUp 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.6;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translate(20px, 20px) scale(0.8);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translate(-15px, 30px) scale(1.1);
+                opacity: 0.8;
+            }
+            75% {
+                transform: translate(25px, -10px) scale(0.9);
+                opacity: 0.5;
+            }
+        }
+        
+        .line-animation {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 6s infinite forwards;
+        }
+        
+        @keyframes drawLine {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-text {
+                font-size: 1.125rem;
+            }
+            .btn-mobile {
+                padding: 0.9rem 2rem;
+            }
+            .particles-container {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Particles Background -->
+    <div id="particles-container" class="particles-container fixed inset-0 w-full h-full pointer-events-none z-0"></div>
+    
+    <!-- Animated Lines -->
+    <svg class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-30" xmlns="http://www.w3.org/2000/svg">
+        <path class="line-animation" d="M0,100 Q250,50 500,150 T1000,100" stroke="white" stroke-width="1" fill="none" style="animation-delay: 0.5s"/>
+        <path class="line-animation" d="M0,300 Q350,250 700,350 T1400,300" stroke="white" stroke-width="1" fill="none" style="animation-delay: 1s"/>
+        <path class="line-animation" d="M0,500 Q450,450 900,550 T1800,500" stroke="white" stroke-width="1" fill="none" style="animation-delay: 1.5s"/>
+    </svg>
+    
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center relative z-10">
+        <div class="container mx-auto px-4 py-20 md:py-24 lg:py-32">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Main Offer -->
+                <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-slideUp glow-text" style="animation-delay: 0.2s">
+                    Преобразуйте Oculus Quest за 1 час с VR Link!
+                </h1>
+                
+                <p class="hero-text text-xl md:text-2xl mb-8 animate-slideUp" style="animation-delay: 0.4s">
+                    VR Link — ваш премиум-эксперт по Oculus Quest 2, 3s и 3. Настраиваем очки, устраняем неполадки и раскрываем секреты установки популярных игр бесплатно через ПК. Поддержка через Telegram-группу VRLink Forum или консультации в Google Meet. Сайт создан VR PROTECT.
+                </p>
+                
+                <!-- Benefits -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-black bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.6s">
+                        <h3 class="text-xl font-semibold mb-3">Поддержка 24/7</h3>
+                        <p class="text-gray-300">Удаленная настройка Oculus Quest через Telegram или Google Meet в любое время.</p>
+                    </div>
+                    
+                    <div class="bg-black bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.8s">
+                        <h3 class="text-xl font-semibold mb-3">Эксперты Oculus</h3>
+                        <p class="text-gray-300">Специализация на Quest 2, 3s и 3 с более чем 5 лет опыта.</p>
+                    </div>
+                    
+                    <div class="bg-black bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 1s">
+                        <h3 class="text-xl font-semibold mb-3">Бесплатные игры</h3>
+                        <p class="text-gray-300">Инструкции по установке топовых VR-игр через ПК бесплатно.</p>
+                    </div>
+                </div>
+                
+                <!-- CTA -->
+                <div class="animate-slideUp" style="animation-delay: 1.2s">
+                    <p class="text-lg md:text-xl mb-6">Готовы к идеальному Oculus Quest и бесплатным играм? Напишите создателю VR Link — VR PROTECT — в Telegram для консультации в Google Meet.</p>
+                    <a href="https://t.me/vrprotect" class="btn-gradient font-semibold py-3 px-8 rounded-lg inline-block btn-mobile">
+                        Написать VR PROTECT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-black relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 animate-slideUp">Отзывы клиентов</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-800 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.4s">
+                    <p class="italic text-gray-300 mb-4">"VR Link настроили мой Quest 2 за 30 минут и открыли доступ к бесплатным играм!"</p>
+                    <p class="font-semibold">— Дмитрий, Москва</p>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.6s">
+                    <p class="italic text-gray-300 mb-4">"VRLink Forum в Telegram спас мой Quest 3 от проблем с трекингом."</p>
+                    <p class="font-semibold">— Анна, Казань</p>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.8s">
+                    <p class="italic text-gray-300 mb-4">"VR PROTECT — гений! Quest 3s теперь работает на уровне!"</p>
+                    <p class="font-semibold">— Сергей, Новосибирск</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why VR Link Section -->
+    <section class="py-16 md:py-24 bg-black relative z-10">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 animate-slideUp">Почему VR Link?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.3s">
+                    <h3 class="text-xl font-semibold mb-3">Эксклюзивные гайды</h3>
+                    <p class="text-gray-300">Профессиональные видео и PDF по Oculus Quest в VRLink Forum.</p>
+                </div>
+                
+                <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.5s">
+                    <h3 class="text-xl font-semibold mb-3">Только Oculus Quest</h3>
+                    <p class="text-gray-300">Фокус на Quest 2, 3s и 3 с максимальной поддержкой.</p>
+                </div>
+                
+                <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.7s">
+                    <h3 class="text-xl font-semibold mb-3">Бесплатные игры</h3>
+                    <p class="text-gray-300">Детальные инструкции для установки топ-игр через ПК.</p>
+                </div>
+                
+                <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.9s">
+                    <h3 class="text-xl font-semibold mb-3">Персональная настройка</h3>
+                    <p class="text-gray-300">Индивидуальная оптимизация Oculus под ваши нужды.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-t from-gray-900 to-black relative z-10">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 animate-slideUp">Частые вопросы</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-800 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.4s">
+                    <h3 class="text-xl font-semibold mb-3">Как проходит консультация?</h3>
+                    <p class="text-gray-300">Напишите VR PROTECT в Telegram (@vrprotect) для ссылки на Google Meet и настройки.</p>
+                </div>
+                
+                <div class="bg-gray-800 bg-opacity-70 p-6 rounded-xl card-hover glow-card animate-slideUp" style="animation-delay: 0.6s">
+                    <h3 class="text-xl font-semibold mb-3">Какие устройства поддерживаются?</h3>
+                    <p class="text-gray-300">Только Oculus Quest 2, 3s и 3.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-slideUp" style="animation-delay: 0.8s">
+                <p class="text-lg md:text-xl mb-6">Остались вопросы? Напишите VR PROTECT прямо сейчас!</p>
+                <a href="https://t.me/vrprotect" class="btn-gradient font-semibold py-3 px-8 rounded-lg inline-block btn-mobile">
+                    Написать VR PROTECT
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 bg-black text-center text-gray-400 text-sm relative z-10">
+        <div class="container mx-auto px-4">
+            <p>© 2025 VR Link. Все права защищены. Сайт создан VR PROTECT.</p>
+            <div class="mt-4 space-x-4">
+                <a href="https://t.me/vrprotect" class="hover:text-white transition">Telegram VR PROTECT</a>
+                <a href="https://t.me/VRLinkForum" class="hover:text-white transition">VRLink Forum</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Initialize particles
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.innerWidth > 640) {
+                createParticles();
+            }
+            
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.animate-slideUp');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => observer.observe(el));
+        });
+        
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 1px and 3px
+                const size = Math.random() * 2 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+    </script>
+</body>
+</html>
